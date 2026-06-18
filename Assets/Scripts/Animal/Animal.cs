@@ -158,7 +158,7 @@ public class Animal : MonoBehaviour
             return transform.position;
         }
 
-        slingshotController.SetAimLine(decayTime);
+        slingshotController.SetAimLine2(decayTime);
 
         float maxAngle = 60f;
         angle = Mathf.Clamp(angle, -maxAngle, maxAngle);

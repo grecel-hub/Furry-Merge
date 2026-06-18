@@ -32,11 +32,11 @@ public class SlingshotController : MonoBehaviour
     private GameObject animal;
     private CircleCollider2D animalCollider;
     private Rigidbody2D animalRB;
-   
+
+    [Header("皮筋")]
     private LineRenderer leftLineRenderer;
     private LineRenderer rightLineRenderer;
     private LineRenderer aimLine;
-
     private Transform leftPoint;
     private Transform rightPoint;
     private Transform centerPoint;
@@ -198,9 +198,7 @@ public class SlingshotController : MonoBehaviour
             velocity *= Mathf.Exp(-dt / _decayTime);
             velocity += gravity * dt * Mathf.Exp(-dt / _decayTime);
 
-            // 降采样，每隔 10 步记录一个点
-            if (step % 8 == 0)
-                points.Add(pos);
+            points.Add(pos);
         }
 
         points.Add(pos); // 添加最终点
@@ -210,6 +208,39 @@ public class SlingshotController : MonoBehaviour
         for (int i = 0; i < points.Count; i++)
             aimLine.SetPosition(i, points[i]);
     }
+
+    public void SetAimLine2(float _decayTime)
+    {
+        List<Vector3> points = new List<Vector3>();
+
+        Vector2 pos = animal.transform.position;
+        Vector2 vel = v0;
+
+        float animalSpeed = v0.magnitude;
+        float animalGravity = animalRB.gravityScale;
+        float animalDrag = animalRB.drag;
+
+        float timeStep = 0.02f;
+        float simulatedTime = 0f;
+
+        for (int i = 0; i < 50;  i++)
+        {
+            points.Add(pos);
+
+            simulatedTime += timeStep;
+            float factor = Mathf.Exp(simulatedTime / _decayTime);
+
+            vel *= factor;  
+            vel += animalGravity * Physics2D.gravity * timeStep;
+            pos += vel * timeStep;
+        }
+
+        aimLine.positionCount = points.Count;
+        aimLine.SetPositions(points.ToArray());
+
+    }
+
+
 
     #region 动物创建逻辑
     //生成动物
