@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/prefab/gameobject/temp.prefab.meta
 guid: e71e970197e92ab4b9fda2581621243b
+========
+guid: eb4cc0d0164f40d43ab3c7f8ba1fe798
+>>>>>>>> PlanB-SlingShot:Assets/Resources/prefab/Animals/Dog Variant.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

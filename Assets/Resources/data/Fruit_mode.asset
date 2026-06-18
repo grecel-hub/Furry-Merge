@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc404035f4db6a4692037d883f40dea, type: 3}
+  m_Script: {fileID: 11500000, guid: 18513f40ee6443c4a99607aa8038f95c, type: 3}
   m_Name: Fruit_mode
   m_EditorClassIdentifier: 
   list_fruit:
@@ -17,29 +17,23 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 601aa5b2327f82649855baa7a013fae5, type: 3}
     add_size: 0
     score: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
   - type: 2
     sprite: {fileID: 21300000, guid: 232a221759b248e4e893e1ebdbbdd07b, type: 3}
     add_size: 1
-    score: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    score: 15
   - type: 3
     sprite: {fileID: 21300000, guid: a8699601fa98c6a4c89cbb370dff5836, type: 3}
     add_size: 2
-    score: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    score: 20
   - type: 4
     sprite: {fileID: 21300000, guid: 641a09213bfc0a245bb11077542c3a33, type: 3}
     add_size: 3
-    score: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    score: 25
   - type: 5
     sprite: {fileID: 21300000, guid: 2013173c2a6c7274286eabef46cead94, type: 3}
     add_size: 4
-    score: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    score: 30
   - type: 6
     sprite: {fileID: 21300000, guid: 2e44357e6e223df4090cb032efcb048b, type: 3}
     add_size: 5
-    score: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    score: 35

@@ -1,11 +1,6 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
-[Serializable]
-public enum Fruittype
-{
-    fruit1=1, fruit2=2, fruit3=3, fruit4=4, fruit5=5, fruit6=6
-}
+using UnityEngine;
 [Serializable]
 public struct Fruit_data
 {
@@ -13,7 +8,7 @@ public struct Fruit_data
     public Sprite sprite;
     public float add_size;
     public int score;
-    public Color color;
+    public System.Drawing.Color color;
 }
 [CreateAssetMenu(fileName = "Fruit_mode", menuName = "Fruit/Fruit_mode")]
 public class Fruit_mode : ScriptableObject
