@@ -13,7 +13,6 @@ public class AnimalFactory : MonoBehaviour
         { AnimalType.tiger, AnimalType.loong }
     };
 
-    // prefab 缓存表（需要在启动时注册）
     private static Dictionary<AnimalType, GameObject> prefabMap = new Dictionary<AnimalType, GameObject>();
 
     public static void RegisterPrefab(AnimalType type, GameObject prefab)

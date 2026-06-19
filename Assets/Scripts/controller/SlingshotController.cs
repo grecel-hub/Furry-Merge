@@ -209,37 +209,6 @@ public class SlingshotController : MonoBehaviour
             aimLine.SetPosition(i, points[i]);
     }
 
-    public void SetAimLine2(float _decayTime)
-    {
-        List<Vector3> points = new List<Vector3>();
-
-        Vector2 pos = animal.transform.position;
-        Vector2 vel = v0;
-
-        float animalSpeed = v0.magnitude;
-        float animalGravity = animalRB.gravityScale;
-        float animalDrag = animalRB.drag;
-
-        float timeStep = 0.02f;
-        float simulatedTime = 0f;
-
-        for (int i = 0; i < 50;  i++)
-        {
-            points.Add(pos);
-
-            simulatedTime += timeStep;
-            float factor = Mathf.Exp(simulatedTime / _decayTime);
-
-            vel *= factor;  
-            vel += animalGravity * Physics2D.gravity * timeStep;
-            pos += vel * timeStep;
-        }
-
-        aimLine.positionCount = points.Count;
-        aimLine.SetPositions(points.ToArray());
-
-    }
-
 
 
     #region 动物创建逻辑
