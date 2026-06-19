@@ -14,20 +14,14 @@ public class SlingshotController : MonoBehaviour
     [SerializeField] private LayerMask hitLayer;
 
     [Header("动物预制体")]
-    [SerializeField] private GameObject mouse;
-    [SerializeField] private GameObject rabbit;
-    [SerializeField] private GameObject sheep;
-    [SerializeField] private GameObject dog;
-    [SerializeField] private GameObject tiger;
-    [SerializeField] private GameObject loong;
-
-    [Header("next动物预制体")]
-    [SerializeField] private GameObject mouseNext;
-    [SerializeField] private GameObject rabbitNext;
-    [SerializeField] private GameObject sheepNext;
+    private GameObject mouse;
+    private GameObject rabbit;
+    private GameObject sheep;
+    private GameObject dog;
+    private GameObject tiger;
+    private GameObject loong;
 
     private int thisAnimal;
-    private int nextAnimal = 0;
 
     private GameObject animal;
     private CircleCollider2D animalCollider;
@@ -59,12 +53,12 @@ public class SlingshotController : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        AnimalFactory.RegisterPrefab(AnimalType.mouse, mouse);
-        AnimalFactory.RegisterPrefab(AnimalType.rabbit, rabbit);
-        AnimalFactory.RegisterPrefab(AnimalType.sheep, sheep);
-        AnimalFactory.RegisterPrefab(AnimalType.dog, dog);
-        AnimalFactory.RegisterPrefab(AnimalType.tiger, tiger);
-        AnimalFactory.RegisterPrefab(AnimalType.loong, loong);
+        mouse = AnimalManager.instance.mouse;
+        rabbit = AnimalManager.instance.rabbit;
+        sheep = AnimalManager.instance.sheep;
+        dog = AnimalManager.instance.dog;
+        tiger = AnimalManager.instance.tiger;
+        loong = AnimalManager.instance.loong;
 
 
         leftLineRenderer = transform.Find("LeftLine").GetComponent<LineRenderer>();
@@ -210,17 +204,15 @@ public class SlingshotController : MonoBehaviour
     }
 
 
-
-    #region 动物创建逻辑
     //生成动物
     public void SetAnimal(Vector3 _position)
     {
         haveAnimal = true;
 
-        if (nextAnimal == 0)
+        if (AnimalManager.instance.nextAnimal == 0)
             thisAnimal = Random.Range(1, 4);
         else
-            thisAnimal = nextAnimal;
+            thisAnimal = AnimalManager.instance.nextAnimal;
 
 
         if (thisAnimal == 1)
@@ -238,7 +230,7 @@ public class SlingshotController : MonoBehaviour
             animal = Instantiate(sheep, Vector3.zero, Quaternion.identity);
         }
 
-        SetNextAnimal();
+        AnimalManager.instance.SetNextAnimal();
 
         animal.GetComponent<Animal>().isShooted = false;
         animal.transform.position = _position;
@@ -248,38 +240,11 @@ public class SlingshotController : MonoBehaviour
         animalRB.isKinematic = true;
     }
 
-    private void SetNextAnimal()
-    {
-        nextAnimal = Random.Range(1, 4);
-
-        if (nextAnimal == 1)
-        {
-            mouseNext.SetActive(true);
-            rabbitNext.SetActive(false);
-            sheepNext.SetActive(false);
-        }
-
-        else if (nextAnimal == 2)
-        {
-            mouseNext.SetActive(false);
-            rabbitNext.SetActive(true);
-            sheepNext.SetActive(false);
-        }
-
-        else
-        {
-            mouseNext.SetActive(false);
-            rabbitNext.SetActive(false);
-            sheepNext.SetActive(true);
-        }
-    }
-
     private IEnumerator NewAnimal()
     {
         yield return new WaitForSeconds(.3f);
         haveAnimal = false;
     }
-    #endregion
 
     public Vector3 getCenterPosition()
     {
